@@ -1,6 +1,5 @@
 HELP.md
 **/node_modules/
-src/main/resources/static/admin-styles/plugins/
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
