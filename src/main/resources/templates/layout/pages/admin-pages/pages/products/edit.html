@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Edit Brand</title>
+
+</head>
+
+
+
+<body>
+
+
+<section class="content" layout:fragment="content">
+
+
+    <div class="card card-primary">
+
+
+        <div class="card-header">
+
+            <h3 class="card-title">
+                Edit Brand Form
+            </h3>
+
+        </div>
+
+
+
+        <form method="post"
+              th:action="@{/brand/update/{id}(id=${brand.id})}">
+
+
+
+            <div class="card-body">
+
+
+
+                <div class="form-group">
+
+
+                    <label>Brand Name</label>
+
+
+                    <input type="text"
+                           name="name"
+                           th:value="${brand.name}"
+                           class="form-control"
+                           placeholder="Enter Brand name">
+
+
+                </div>
+
+
+
+
+                <div class="form-group">
+
+
+                    <label>Status</label><br>
+
+
+                    <input type="radio"
+                           name="status"
+                           value="true"
+                           th:checked="${brand.status}">
+
+                    Active
+
+
+
+                    <input type="radio"
+                           name="status"
+                           value="false"
+                           th:checked="${!brand.status}">
+
+                    Inactive
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="card-footer">
+
+
+                <button class="btn btn-primary">
+
+                    Update
+
+                </button>
+
+
+
+                <a th:href="@{/brand}"
+                   class="btn btn-secondary">
+
+                    Back to List
+
+                </a>
+
+
+
+            </div>
+
+
+
+        </form>
+
+
+    </div>
+
+
+</section>
+
+
+</body>
+
+</html>
