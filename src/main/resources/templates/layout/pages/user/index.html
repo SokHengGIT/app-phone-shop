@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>User</title>
+
+  <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+
+<body>
+
+<div th:replace="layout/header :: header"></div>
+
+<div class="container">
+
+  <div th:replace="layout/main-sidebar :: sidebar"></div>
+
+  <div class="content">
+
+    <h1>User Page</h1>
+
+    <p>This is User Page.</p>
+
+  </div>
+
+</div>
+
+<div th:replace="layout/footer :: footer"></div>
+
+</body>
+
+</html>

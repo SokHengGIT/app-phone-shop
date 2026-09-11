@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Category</title>
+</head>
+
+<body>
+
+<section class="content" layout:fragment="content">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Edit Category Form</h3>
+        </div>
+
+        <form method="post" th:action="@{/category/update/{id}(id=${category.id})}">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <input type="text"
+                                   name="name"
+                                   th:value="${category.name}"
+                                   class="form-control"
+                                   placeholder="Enter Category name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Status</label><br>
+
+                            <input type="radio" name="status" value="Active" th:checked="${category.status == 'Active'}"> Active
+                            <input type="radio" name="status" value="Inactive" th:checked="${category.status == 'Inactive'}"> Inactive
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a th:href="@{/category}" class="btn btn-secondary">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
+</body>
+</html>

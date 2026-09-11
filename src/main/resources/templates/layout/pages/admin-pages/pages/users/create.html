@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+
+<body>
+
+<section class="content" layout:fragment="content">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">User form</h3>
+        </div>
+
+        <!-- form start -->
+        <form method="post" th:action="@{/user/create}" th:object="${user}">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" th:field="*{username}" class="form-control" placeholder="Enter username">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" th:field="*{password}" class="form-control" placeholder="Enter password">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Status</label><br>
+                            <!-- Using th:field automatically handles the checking logic! -->
+                            <input type="radio" th:field="*{enabled}" th:value="true"> Active
+                            &nbsp;&nbsp;
+                            <input type="radio" th:field="*{enabled}" th:value="false"> Inactive
+                        </div>
+                    </div>
+                </div>
+
+                <select class="form-control" th:field="*{roles}">
+                    <!-- This loops through the 'roles' list we sent from the controller -->
+                    <option th:each="role : ${roles}"
+                            th:value="${role.id}"
+                            th:text="${role.name}">
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a th:href="@{/user}" class="btn btn-secondary">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
+</body>
+</html>

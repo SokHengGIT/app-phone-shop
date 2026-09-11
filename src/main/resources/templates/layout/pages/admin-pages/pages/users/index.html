@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+
+<body>
+
+<section class="content" layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        <a th:href="@{/user/show}">
+                            <span class="fas fa-plus"></span> New
+                        </a>
+                    </h3>
+
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width:150px;">
+                            <input type="text"
+                                   class="form-control float-right"
+                                   placeholder="Search">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card-body table-responsive p-0">
+
+                    <table class="table table-hover text-nowrap">
+
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                            <th>Role Name</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr th:each="u:${users}">
+
+                            <td th:text="${u.id}"></td>
+
+                            <td th:text="${u.username}"></td>
+
+                            <!-- Added Status Column with conditional badges -->
+                            <td>
+                                <span th:if="${u.enabled}" class="badge badge-success">Active</span>
+                                <span th:unless="${u.enabled}" class="badge badge-danger">Inactive</span>
+                            </td>
+
+                            <!-- Loop through the roles list and display each role name -->
+                            <td>
+                                <span class="badge badge-info mr-1" th:each="role : ${u.roles}" th:text="${role.name}"></span>
+                            </td>
+
+                            <td>
+
+                                <a th:href="@{/user/edit/{id}(id=${u.id})}"
+                                   class="btn btn-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+
+                                <a href="#" th:onclick="|confirmDelete('/user/delete/' + ${u.id})|" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link th:href="@{/front-end-styles/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/front-end-styles/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/front-end-styles/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/front-end-styles/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/front-end-styles/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/front-end-styles/css/main.css}" rel="stylesheet">
+	<link th:href="@{/front-end-styles/css/responsive.css}" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script th:src="@{/front-end-styles/js/html5shiv.js}"></script>
+    <script th:src="@{/front-end-styles/js/respond.min.js}"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" th:href="@{/front-end-styles/images/ico/favicon.ico}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/front-end-styles/images/ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/front-end-styles/images/ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/front-end-styles/images/ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/front-end-styles/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+
+<body>
+	<span th:replace="~{layout/front-end/pages/header::header}"></span>
+	<span th:replace="~{layout/front-end/pages/slider::slider}"></span>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<span th:replace="~{layout/front-end/pages/left-sidebar::left-sidebar}"></span>
+				</div>
+				<div class="col-sm-9 padding-right">
+					<span th:replace="~{layout/front-end/pages/content::content}"></span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<span th:replace="~{layout/front-end/pages/footer::footer}"></span>
+	<script th:src="@{/front-end-styles/js/jquery.js}"></script>
+	<script th:src="@{/front-end-styles/js/bootstrap.min.js}"></script>
+	<script th:src="@{/front-end-styles/js/jquery.scrollUp.min.js}"></script>
+	<script th:src="@{/front-end-styles/js/price-range.js}"></script>
+    <script th:src="@{/front-end-styles/js/jquery.prettyPhoto.js}"></script>
+    <script th:src="@{/front-end-styles/js/main.js}"></script>
+</body>
+</html>

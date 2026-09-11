@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User Form</title>
+</head>
+
+<body>
+
+<section class="content" layout:fragment="content">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Edit User Form</h3>
+        </div>
+
+        <form method="post" th:action="@{/user/update/{id}(id=${user.id})}">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text"
+                                   name="username" th:value="${user.username}"
+                                   class="form-control"
+                                   placeholder="Enter username">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Status</label><br>
+
+                            <input type="radio" name="enabled" th:value="true" th:checked="${user.enabled == true}"> Active
+                            &nbsp;&nbsp; <!-- Adds a little spacing between the buttons -->
+                            <input type="radio" name="enabled" th:value="false" th:checked="${user.enabled == false}"> Inactive
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Role</label>
+                            <select class="form-control" name="roles">
+                                <option value="1">ADMIN</option>
+                                <option value="2">USER</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a th:href="@{/user}" class="btn btn-secondary">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
+</body>
+</html>

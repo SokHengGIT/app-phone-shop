@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brand List</title>
+</head>
+
+<body>
+
+<section class="content" layout:fragment="content">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3 class="card-title">
+                <a th:href="@{/brand/show}"
+                   class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus"></i>
+                    New
+                </a>
+            </h3>
+
+            <div class="card-tools">
+                <form th:action="@{/brand}" method="get" class="form-inline float-right">
+                    <div class="input-group input-group-sm" style="width: 250px;">
+                        <input type="text" name="keyword" th:value="${keyword}" class="form-control float-right" placeholder="Search brand name...">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="card-body table-responsive p-0">
+
+            <table class="table table-hover text-nowrap">
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Brand Name</th>
+                    <th>Status</th>
+                    <!-- ADD the new header here -->
+                    <th>Category Name</th>
+                    <th width="180">Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="brand : ${brands.content}">
+                    <td th:text="${brand.id}"></td>
+                    <td th:text="${brand.name}"></td>
+                    <td th:text="${brand.status ? 'Active':'Inactive'}"></td>
+
+                    <!-- ADD the category name display here. The '?.' is a safe navigation operator just in case a brand has no category! -->
+                    <td th:text="${brand.category?.name}"></td>
+
+                    <td>
+                        <!-- Your Action buttons remain exactly the same -->
+                        <a th:href="@{/brand/edit/{id}(id=${brand.id})}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a th:href="@{/brand/delete/{id}(id=${brand.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="card-footer clearfix">
+
+            <span class="float-left mt-2"
+                  th:text="'Total Items : ' + ${totalItems}">
+            </span>
+
+            <ul class="pagination pagination-sm m-0 float-right"
+                th:if="${totalPages > 0}">
+
+                <li class="page-item"
+                    th:classappend="${currentPage == 1} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/brand/page/{pageNo}(pageNo=${currentPage > 1 ? currentPage -1 : 1},keyword=${keyword})}">
+                        Previous
+                    </a>
+                </li>
+
+                <li class="page-item"
+                    th:each="i:${#numbers.sequence(1,totalPages)}"
+                    th:classappend="${i==currentPage}?'active'">
+                    <a class="page-link"
+                       th:text="${i}"
+                       th:href="@{/brand/page/{pageNo}(pageNo=${i},keyword=${keyword})}">
+                    </a>
+                </li>
+
+                <li class="page-item"
+                    th:classappend="${currentPage==totalPages}?'disabled'">
+                    <a class="page-link"
+                       th:href="@{/brand/page/{pageNo}(pageNo=${currentPage+1},keyword=${keyword})}">
+                        Next
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

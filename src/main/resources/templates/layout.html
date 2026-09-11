@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Phone Shop</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body class="app-layout">
+
+<header class="app-header">Header</header>
+
+<div class="app-body">
+    <nav class="app-sidebar">
+        <a th:href="@{/admin/users}" class="sidebar-link">User</a>
+        <a th:href="@{/admin/products}" class="sidebar-link">Product</a>
+    </nav>
+
+    <main class="app-content" layout:fragment="content">
+        <!-- page content goes here -->
+    </main>
+</div>
+
+<footer class="app-footer">Footer</footer>
+</body>
+</html>

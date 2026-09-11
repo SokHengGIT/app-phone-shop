@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/pages/admin-pages/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Category Form</title>
+</head>
+
+<body>
+
+<section class="content" layout:fragment="content">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Category Form</h3>
+        </div>
+
+        <form method="post" th:action="@{/category/create}" th:object="${category}">
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <input type="text"
+                                   th:field="*{name}"
+                                   class="form-control"
+                                   placeholder="Enter Category name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Status</label><br>
+
+                            <input type="radio" th:field="*{status}" value="Active"> Active
+                            <input type="radio" th:field="*{status}" value="Inactive"> Inactive
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a th:href="@{/category}" class="btn btn-secondary">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
+</body>
+</html>
