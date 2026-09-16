@@ -8,22 +8,22 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/phone-shop-db
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME}
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: Password123@
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - uploads-data:/app/uploads #folder upload photo mount volume upload-data
+      - uploads-data:/app/uploads
   db:
     image: mysql:8
     container_name: mysql-db
     restart: always
     environment:
-      MYSQL_DATABASE: phone-shop-db
-      MYSQL_ROOT_PASSWORD: Password123@
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3308:3306"
+      - "3306:3306"
     volumes:
-      - db-data:/var/lib/mysql # ADDED: This saves your data permanently
+      - db-data:/var/lib/mysql
 volumes:
   uploads-data:
-  db-data: # ADDED: Declare the new volume
+  db-data:
