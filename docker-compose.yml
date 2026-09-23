@@ -1,7 +1,7 @@
-version: "3.8"
 services:
   app:
     build: .
+    image: sokhengdocker/app-phone-shop:latest
     container_name: app-phone-shop-mvc
     ports:
       - "8081:8080"
@@ -9,7 +9,7 @@ services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME}
-      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
     volumes:
       - uploads-data:/app/uploads
